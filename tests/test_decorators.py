@@ -1,0 +1,2 @@
+from croco_selenium_actions.decorators import handle_in_new_tab
+
