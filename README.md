@@ -52,6 +52,7 @@ driver.send_keys(15, '//input[@id="email"]', 'hello@world.com')
 # Actions Overview
 You can perform the following actions, using croco-selenium:
 
+- **[add_cookies](#add_cookies)**
 - **[click](#click)**
 - **[close_tabs](#close_tabs)**
 - **[get_element](#get_element)**
@@ -62,6 +63,21 @@ You can perform the following actions, using croco-selenium:
 - **[silent_send_keys](#silent_send_keys)**
 - **[switch_to_another_window](#switch_to_another_window)**
 - **[wait_for_invisibility](#wait_for_invisibility)**
+
+<h3 id="add_cookies">add_cookies</h3>
+Adds cookies to a current page. It takes valid string containing json, list of cookies or one cookie as dictionary.
+
+```python
+from selenium.webdriver.chrome.webdriver import WebDriver
+from croco_selenium import ActionPerformer
+driver = WebDriver()
+action_performer = ActionPerformer(driver)
+timeout = 10
+
+cookies = '{"domain":".facebook.com","expirationDate":1689249734,"httpOnly":true,"name":"c_user","path":"/","secure":true,"value":"100083466604886"}'
+
+action_performer.add_cookies(cookies)
+```
 
 <h3 id="click">click</h3>
 Clicks on element in browser

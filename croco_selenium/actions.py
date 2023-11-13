@@ -1,3 +1,4 @@
+import json
 import time
 import random
 from typing import Optional
@@ -6,10 +7,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
-from .types import XPATH, IgnoredExceptions
+from .types import XPATH, IgnoredExceptions, Cookies
 from .utils import ignore_exceptions
 
 __all__ = [
+    'add_cookies',
     'switch_to_another_window',
     'send_keys',
     'silent_send_keys',
@@ -21,6 +23,24 @@ __all__ = [
     'wait_for_invisibility',
     'close_tabs'
 ]
+
+
+def add_cookies(driver: WebDriver, cookies: Cookies) -> None:
+    """
+    Adds cookies to a current page
+    :param driver: A driver to be interacted
+    :param cookies: List of dictionaries or dictionary containing cookies
+    :return: None
+    """
+    cookies = json.loads(cookies) if isinstance(cookies, str) else cookies
+
+    if isinstance(cookies, list):
+        for cookie in cookies:
+            if 'domain' in cookie:
+                driver.add_cookie(cookie)
+    elif isinstance(cookies, dict):
+        if 'domain' in cookies:
+            driver.add_cookie(cookies)
 
 
 def switch_to_another_window(driver: WebDriver, timeout: float = 100) -> None:

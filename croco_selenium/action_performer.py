@@ -1,6 +1,6 @@
 from typing import Optional
 from selenium.webdriver.remote.webelement import WebElement
-from .types import XPATH, IgnoredExceptions
+from .types import XPATH, IgnoredExceptions, Cookies
 from selenium.webdriver.chromium.webdriver import ChromiumDriver as WebDriver
 from .actions import *
 
@@ -12,6 +12,15 @@ class ActionPerformer:
         :param driver: A driver to be interacted
         """
         self.__targeted_driver = driver
+
+    def add_cookies(self, cookies: Cookies) -> None:
+        """
+        Adds cookies to browser
+        :param cookies: List of dictionaries or dictionary containing cookies
+        :return: None
+        """
+        driver = self.__targeted_driver
+        add_cookies(driver, cookies)
 
     def switch_to_another_window(self, timeout: float = 100) -> None:
         """
