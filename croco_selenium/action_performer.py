@@ -32,6 +32,34 @@ class ActionPerformer:
         driver = self.__targeted_driver
         switch_to_another_window(driver, timeout)
 
+    def switch_to_frame(
+            self,
+            timeout: float,
+            xpath: XPATH,
+            *,
+            ignored_exceptions: Optional[IgnoredExceptions] = None
+    ) -> None:
+        """
+        Switches to the frame
+        :param timeout: Number of seconds before timing out
+        :param xpath: XPATH of an element
+        :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
+
+        :return: None
+        """
+        driver = self.__targeted_driver
+        switch_to_frame(driver, timeout, xpath, ignored_exceptions=ignored_exceptions)
+
+    def switch_to_parent_frame(
+            self
+    ) -> None:
+        """
+        Switches to the parent frame
+        :return: None
+        """
+        driver = self.__targeted_driver
+        switch_to_parent_frame(driver)
+
     def send_keys(
             self,
             timeout: float,
@@ -45,7 +73,7 @@ class ActionPerformer:
         :param timeout: Number of seconds before timing out
         :param xpath: XPATH of an element
         :param text: Text to send
-        :param ignored_exceptions: Iterable collection of ignoring exceptions
+        :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
         :param cleared: If true, field clears before be interacted
 
         :return: None
@@ -68,7 +96,7 @@ class ActionPerformer:
         :param timeout: Number of seconds before timing out
         :param xpath: XPATH of an element
         :param text: Text to send
-        :param ignored_exceptions: Iterable collection of ignoring exceptions
+        :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
         :param cleared: If true, field clears before be interacted
         :param min_delay: Minimum delay between sending a character
         :param max_delay: Maximum delay between sending a character
@@ -97,7 +125,7 @@ class ActionPerformer:
         Clicks on element in browser
         :param timeout: Number of seconds before timing out
         :param xpath: XPATH of an element
-        :param ignored_exceptions: Iterable collection of ignoring exceptions
+        :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
 
         :return: None
         """
@@ -114,7 +142,7 @@ class ActionPerformer:
         Gets element's text in browser
         :param timeout: Number of seconds before timing out
         :param xpath: XPATH of an element
-        :param ignored_exceptions: Iterable collection of ignoring exceptions
+        :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
 
         :return: str
         """
@@ -133,7 +161,7 @@ class ActionPerformer:
         :param timeout: Number of seconds before timing out
         :param xpath: XPATH of an element
         :param attribute: Name of an attribute of the element
-        :param ignored_exceptions: Iterable collection of ignoring exceptions
+        :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
 
         :return: str
         """
@@ -156,7 +184,7 @@ class ActionPerformer:
         Gets element in browser
         :param timeout: Number of seconds before timing out
         :param xpath: XPATH of an element
-        :param ignored_exceptions: Iterable collection of ignoring exceptions
+        :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
 
         :return: WebElement
         """
@@ -173,7 +201,7 @@ class ActionPerformer:
         Gets elements in browser
         :param timeout: Number of seconds before timing out
         :param xpath: XPATH of an element
-        :param ignored_exceptions: Iterable collection of ignoring exceptions
+        :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
 
         :return: list[WebElement]
         """
@@ -190,7 +218,7 @@ class ActionPerformer:
         Wait for element's invisibility in browser
         :param timeout: Number of seconds before timing out
         :param xpath: XPATH of an element
-        :param ignored_exceptions: Iterable collection of ignoring exceptions
+        :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
 
         :return: None
         """

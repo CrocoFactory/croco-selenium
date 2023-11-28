@@ -62,6 +62,8 @@ You can perform the following actions, using croco-selenium:
 - **[send_keys](#send_keys)**
 - **[silent_send_keys](#silent_send_keys)**
 - **[switch_to_another_window](#switch_to_another_window)**
+- **[switch_to_frame](#switch_to_frame)**
+- **[switch_to_parent_frame](#switch_to_parent_frame)**
 - **[wait_for_invisibility](#wait_for_invisibility)**
 
 <h3 id="add_cookies">add_cookies</h3>
@@ -205,6 +207,35 @@ action_performer.switch_to_another_window(timeout)
 
 action_performer.click(timeout, '//input[@type="submit"]')
 action_performer.switch_to_another_window(timeout)
+```
+
+<h3 id="switch_to_frame">switch_to_frame</h3>
+Switches to the frame
+
+```python
+from selenium.webdriver.chrome.webdriver import WebDriver
+from croco_selenium import ActionPerformer
+driver = WebDriver()
+action_performer = ActionPerformer(driver)
+timeout = 10
+
+action_performer.switch_to_frame(timeout, '//iframe[@data-hcaptcha-widget-id]')
+action_performer.click(timeout, '//input[@type="submit"]')
+```
+
+<h3 id="switch_to_parent_frame">switch_to_parent_frame</h3>
+Switches to the parent frame
+
+```python
+from selenium.webdriver.chrome.webdriver import WebDriver
+from croco_selenium import ActionPerformer
+driver = WebDriver()
+action_performer = ActionPerformer(driver)
+timeout = 10
+
+action_performer.switch_to_frame(timeout, '//iframe[@data-hcaptcha-widget-id]')
+action_performer.click(timeout, '//input[@type="submit"]')
+action_performer.switch_to_parent_frame()
 ```
 
 <h3 id="wait_for_invisibility">wait_for_invisibility</h3>

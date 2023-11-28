@@ -13,6 +13,8 @@ from .utils import ignore_exceptions
 __all__ = [
     'add_cookies',
     'switch_to_another_window',
+    'switch_to_parent_frame',
+    'switch_to_frame',
     'send_keys',
     'silent_send_keys',
     'click',
@@ -61,6 +63,39 @@ def switch_to_another_window(driver: WebDriver, timeout: float = 100) -> None:
 
 
 @ignore_exceptions
+def switch_to_frame(
+        driver: WebDriver,
+        timeout: float,
+        xpath: XPATH,
+        *,
+        ignored_exceptions: Optional[IgnoredExceptions] = None
+) -> None:
+    """
+    Switches to the frame
+    :param driver: A driver to be interacted
+    :param timeout: Number of seconds before timing out
+    :param xpath: XPATH of an element
+    :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
+
+    :return: None
+    """
+    WebDriverWait(driver, timeout, ignored_exceptions=ignored_exceptions).until(
+        EC.frame_to_be_available_and_switch_to_it(
+            (By.XPATH, xpath)))
+
+
+def switch_to_parent_frame(
+        driver: WebDriver
+) -> None:
+    """
+    Switches to the parent frame
+    :param driver: A driver to be interacted
+    :return: None
+    """
+    driver.switch_to.parent_frame()
+
+
+@ignore_exceptions
 def send_keys(
         driver: WebDriver,
         timeout: float,
@@ -76,7 +111,7 @@ def send_keys(
     :param timeout: Number of seconds before timing out
     :param xpath: XPATH of an element
     :param text: Text to send
-    :param ignored_exceptions: Iterable collection of ignoring exceptions
+    :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
     :param cleared: If true, field clears before be interacted
 
     :return: None
@@ -109,7 +144,7 @@ def silent_send_keys(
     :param timeout: Number of seconds before timing out
     :param xpath: XPATH of an element
     :param text: Text to send
-    :param ignored_exceptions: Iterable collection of ignoring exceptions
+    :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
     :param cleared: If true, field clears before be interacted
     :param min_delay: Minimum delay between sending a character
     :param max_delay: Maximum delay between sending a character
@@ -142,7 +177,7 @@ def click(
     :param driver: A driver to be interacted
     :param timeout: Number of seconds before timing out
     :param xpath: XPATH of an element
-    :param ignored_exceptions: Iterable collection of ignoring exceptions
+    :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
 
     :return: None
     """
@@ -164,7 +199,7 @@ def get_element_text(
     :param driver: A driver to be interacted
     :param timeout: Number of seconds before timing out
     :param xpath: XPATH of an element
-    :param ignored_exceptions: Iterable collection of ignoring exceptions
+    :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
 
     :return: str
     """
@@ -188,7 +223,7 @@ def get_element_attribute(
     :param timeout: Number of seconds before timing out
     :param xpath: XPATH of an element
     :param attribute: Name of an attribute of the element
-    :param ignored_exceptions: Iterable collection of ignoring exceptions
+    :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
 
     :return: str
     """
@@ -210,7 +245,7 @@ def get_element(
     :param driver: A driver to be interacted
     :param timeout: Number of seconds before timing out
     :param xpath: XPATH of an element
-    :param ignored_exceptions: Iterable collection of ignoring exceptions
+    :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
 
     :return: WebElement
     """
@@ -232,7 +267,7 @@ def get_elements(
     :param driver: A driver to be interacted
     :param timeout: Number of seconds before timing out
     :param xpath: XPATH of an element
-    :param ignored_exceptions: Iterable collection of ignoring exceptions
+    :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
 
     :return: list[WebElement]
     """
@@ -254,7 +289,7 @@ def wait_for_invisibility(
     :param driver: A driver to be interacted
     :param timeout: Number of seconds before timing out
     :param xpath: XPATH of an element
-    :param ignored_exceptions: Iterable collection of ignoring exceptions
+    :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
 
     :return: None
     """
