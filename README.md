@@ -65,6 +65,7 @@ You can perform the following actions, using croco-selenium:
 - **[switch_to_frame](#switch_to_frame)**
 - **[switch_to_parent_frame](#switch_to_parent_frame)**
 - **[wait_for_invisibility](#wait_for_invisibility)**
+- **[wait_for_windows](#wait_for_windows)**
 
 <h3 id="add_cookies">add_cookies</h3>
 Adds cookies to a current page. It takes valid string containing json, list of cookies or one cookie as dictionary.
@@ -251,7 +252,19 @@ timeout = 10
 action_performer.click(timeout, '//button')
 action_performer.wait_for_invisibility(timeout, '//*[@id="popup"]')
 ```
+      
+<h3 id="wait_for_windows">wait_for_windows</h3>
+Wait for occurring of number of windows
 
+```python
+from selenium.webdriver.chrome.webdriver import WebDriver
+from croco_selenium import ActionPerformer
+driver = WebDriver()
+action_performer = ActionPerformer(driver)
+timeout = 10
+
+action_performer.wait_for_windows(timeout, 2)
+```
 
 # Installing croco-selenium-actions
 

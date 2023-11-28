@@ -23,6 +23,7 @@ __all__ = [
     'get_element_text',
     'get_element_attribute',
     'wait_for_invisibility',
+    'wait_for_windows',
     'close_tabs'
 ]
 
@@ -296,6 +297,28 @@ def wait_for_invisibility(
     WebDriverWait(driver, timeout, ignored_exceptions=ignored_exceptions).until(
         EC.invisibility_of_element_located(
             (By.XPATH, xpath)))
+    time.sleep(1)
+
+
+@ignore_exceptions
+def wait_for_windows(
+        driver: WebDriver,
+        timeout: float,
+        number: int,
+        *,
+        ignored_exceptions: Optional[IgnoredExceptions] = None
+) -> None:
+    """
+    Wait for occurring of number of windows
+    :param driver: A driver to be interacted
+    :param timeout: Number of seconds before timing out
+    :param number: Number of windows to be waited
+    :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
+
+    :return: None
+    """
+    WebDriverWait(driver, timeout, ignored_exceptions=ignored_exceptions).until(
+        EC.number_of_windows_to_be(number))
     time.sleep(1)
 
 

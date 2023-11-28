@@ -225,6 +225,25 @@ class ActionPerformer:
         driver = self.__targeted_driver
         wait_for_invisibility(driver, timeout, xpath, ignored_exceptions=ignored_exceptions)
 
+    def wait_for_windows(
+            self,
+            timeout: float,
+            number: int,
+            *,
+            ignored_exceptions: Optional[IgnoredExceptions] = None
+    ) -> None:
+        """
+        Wait for occurring of number of windows
+        :param timeout: Number of seconds before timing out
+        :param number: Number of windows to be waited
+        :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
+
+        :return: None
+        """
+        driver = self.__targeted_driver
+
+        wait_for_windows(driver, timeout, number, ignored_exceptions=ignored_exceptions)
+
     def close_tabs(self) -> None:
         """
         Closes all tabs in browser
