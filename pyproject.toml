@@ -1,26 +1,28 @@
-[build-system]
-requires = ["setuptools>=61.0", "selenium>=4.12.0"]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "croco-selenium"
-version = "0.9.0"
-authors = [
-    { name = "Alexey", email = "abelenkov2006@gmail.com" },
-]
-description = "The package providing ways to interact with Selenium Web Driver actions, such as clicking, sending keys etc."
-readme = "README.md"
-requires-python = ">=3.11"
+[tool.poetry]
+name = 'croco_selenium'
+version = '0.1.0'
+description = 'The package providing ways to interact with Selenium Web Driver actions, such as clicking, sending keys etc.'
+authors = ['Alexey <abelenkov2006@gmail.com>']
+license = 'MIT'
+readme = 'README.md'
+repository = 'https://github.com/blnkoff/croco-selenium'
+homepage = 'https://github.com/blnkoff/croco-selenium'
 classifiers = [
-    'Development Status :: 5 - Production/Stable',
+    'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
-    'Topic :: Software Development :: Build Tools',
+    'Topic :: Software Development :: Libraries :: Python Module',
     'Programming Language :: Python :: 3.11',
     'Programming Language :: Python :: 3 :: Only',
-    'License :: OSI Approved :: Apache Software License',
+    'License :: OSI Approved :: MIT License',
     'Operating System :: Microsoft :: Windows',
     'Operating System :: MacOS'
 ]
+packages = [{ include = 'croco_selenium' }]
 
-[project.urls]
-source = "https://github.com/blnkoff/croco-selenium"
+[tool.poetry.dependencies]
+python = '^3.11'
+selenium = "^4.16.0"
+
+[build-system]
+requires = ['poetry-core']
+build-backend = 'poetry.core.masonry.api'

@@ -1,4 +1,3 @@
-import time
 from typing import Optional, Iterable
 from selenium.webdriver.chromium.options import ChromiumOptions
 from selenium.webdriver.chromium.service import ChromiumService
@@ -32,8 +31,3 @@ class CrocoDriver(ChromiumDriver, ActionPerformer):
 
         ChromiumDriver.__init__(self, browser_name, vendor_prefix, options, service)
         ActionPerformer.__init__(self, self)
-
-        for _ in range(3):
-            time.sleep(1.5)
-            self.close_tabs()
-
