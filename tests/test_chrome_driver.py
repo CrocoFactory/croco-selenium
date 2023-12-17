@@ -1,6 +1,6 @@
 import time
 import pytest
-from croco_selenium_actions import ChromeDriver
+from croco_selenium import ChromeDriver
 
 
 @pytest.fixture

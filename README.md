@@ -37,7 +37,7 @@ action_performer.send_keys(timeout, '//input[@type="password"]', 'password')
 action_performer.click(timeout, '//input[@type="submit"]')
 ```
 
-One of the best way to use actions is create an instance of ChromeDriver and perform 
+One of the best ways to use actions is create an instance of ChromeDriver and perform 
 actions by calling methods on it. That class derived from ActionPerformer and ChromiumDriver
 
 ```python
@@ -53,7 +53,7 @@ driver.send_keys(15, '//input[@id="email"]', 'hello@world.com')
 ```
 
 # Actions Overview
-You can perform the following actions, using croco-selenium:
+You can perform the following [actions](#actions), using croco-selenium:
 
 - **[add_cookies](#add_cookies)**
 - **[click](#click)**
@@ -69,6 +69,14 @@ You can perform the following actions, using croco-selenium:
 - **[switch_to_parent_frame](#switch_to_parent_frame)**
 - **[wait_for_invisibility](#wait_for_invisibility)**
 - **[wait_for_windows](#wait_for_windows)**
+
+And there are 3 useful [decorators](#decorators):
+
+- **[handle_pop_up](#handle_pop_up)**
+- **[handle_in_new_tab](#handle_in_new_tab)**
+- **[handle_new_tab](#handle_new_tab)**
+         
+## Actions
 
 <h3 id="add_cookies">add_cookies</h3>
 Adds cookies to a current page. It takes valid string containing json, list of cookies or one cookie as dictionary.
@@ -96,7 +104,7 @@ driver.click(timeout, '//input[@type="submit"]')
 ```
 
 <h3 id="close_tabs">close_tabs</h3>
-Closes all tabs in browser. It's convenient to use, when you add extensions to your browser and their windows occure with 
+Closes all tabs in browser. It's convenient to use, when you add extensions to your browser and their windows occur with 
 starting a driver.
 
 ```python
@@ -258,6 +266,60 @@ driver = ChromeDriver()
 
 driver.wait_for_windows(timeout, 2)
 ```
+
+## Decorators
+<h3 id="handle_pop_up">handle_pop_up</h3>
+Switches to another window, performs decorated function and switches back. Pop up has to be closed after performing
+decorated function.
+
+This decorator is usually used for browser extensions' pop-ups. Example of function performing
+a third-party Metamask connection:
+
+```python
+from croco_selenium import ChromeDriver, handle_pop_up
+from selenium.common import TimeoutException
+
+@handle_pop_up()
+def connect(driver: ChromeDriver, password: str) -> None:
+    try:
+        password_xpath = '//*[@id="password"]'
+        driver.send_keys(7, password_xpath, password)
+
+        unlock_xpath = '//button[@data-testid="unlock-submit"]'
+        driver.click(5, unlock_xpath)
+    except TimeoutException:
+        pass
+
+    for _ in range(3):
+        next_xpath = '//button[@data-testid="page-container-footer-next"]'
+        driver.click(10, next_xpath, ignored_exceptions=TimeoutException)
+```
+
+<h3 id="handle_in_new_tab">handle_in_new_tab</h3>
+Opens new tab, performs decorated function, closes new tab and switches back. Here is example of function performing 
+getting of 2FA code from browser extension.
+
+```python
+from croco_selenium import ChromeDriver, handle_in_new_tab
+
+@handle_in_new_tab()
+def get_code(driver: ChromeDriver, account) -> str:
+    timeout = 15
+
+    driver.get('<EXTENSION_URL>')
+
+    code_field_xpath = '//*[contains(@class, "code")]'
+    code_fields = driver.get_elements(timeout, code_field_xpath)
+
+    code_field = code_fields[account.id]
+
+    code = code_field.text
+    return code
+```
+
+<h3 id="handle_new_tab">handle_new_tab</h3>
+Performs decorated function in new tab and switches back. New tab has to be opened during performing decorated function.
+
 
 # Installing croco-selenium
 

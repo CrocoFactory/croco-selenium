@@ -1,5 +1,5 @@
 from selenium.common import TimeoutException
-from croco_selenium_actions import ActionPerformer
+from croco_selenium import ActionPerformer
 
 
 def test_ignore_exceptions(driver):
