@@ -1,9 +1,9 @@
 import pytest
-from selenium.webdriver.chrome.webdriver import WebDriver
+from croco_selenium import ChromeDriver
 
 
 @pytest.fixture(scope="session")
 def driver():
-    driver = WebDriver()
+    driver = ChromeDriver()
     yield driver
     driver.close()
