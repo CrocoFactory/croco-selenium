@@ -5,7 +5,7 @@ The package providing ways to interact with Selenium Web Driver actions, such as
     
 
 - **[Telegram channel](https://t.me/crocofactory)**
-- **[Bug reports](https://github.com/blnkoff/republik-warmer/issues)**
+- **[Bug reports](https://github.com/blnkoff/croco-selenium/issues)**
 - **[Actions Overview](#actions-overview)**
 
 When we use Selenium, it's not convenient to use WebDriverWait with its cluttered chain actions. Instead of many imports 
