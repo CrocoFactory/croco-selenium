@@ -5,7 +5,7 @@ def ignore_exceptions(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         result = None
-        ignored_exceptions = kwargs['ignored_exceptions']
+        ignored_exceptions = kwargs.get('ignored_exceptions')
 
         if ignored_exceptions:
             try:
