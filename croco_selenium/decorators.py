@@ -29,11 +29,12 @@ def _get_driver(method_type: MethodType, *args) -> WebDriver:
     return driver
 
 
-def handle_pop_up(func: Callable = None, *, method_type: MethodType = 'instance'):
+def handle_pop_up(func: Callable = None, *, method_type: MethodType = 'instance', timeout: float = 15) -> Callable:
     """
     Switches to another window, performs decorated function and switches back. Pop up has to be closed after performing
     decorated function.
     :param func: Function to be decorated
+    :param timeout: Number of seconds before timing out
     :param method_type: Type of method. There are three types:
                         instance - decorated function has to be instance-method and have attribute 'driver' in `self` namespace
                         static, function - decorated function has to have driver as first positional argument
@@ -48,13 +49,13 @@ def handle_pop_up(func: Callable = None, *, method_type: MethodType = 'instance'
 
         original_window_handle = driver.current_window_handle
         current_handles = driver.window_handles
-        WebDriverWait(driver, 100).until(EC.new_window_is_opened(current_handles))
+        WebDriverWait(driver, timeout).until(EC.new_window_is_opened(current_handles))
         current_handles = driver.window_handles
 
-        switch_to_another_window(driver)
+        switch_to_another_window(driver, timeout)
         result = func(*args, **kwargs)
 
-        WebDriverWait(driver, 100).until(EC.number_of_windows_to_be(len(current_handles) - 1))
+        WebDriverWait(driver, timeout).until(EC.number_of_windows_to_be(len(current_handles) - 1))
         driver.switch_to.window(original_window_handle)
         return result
 

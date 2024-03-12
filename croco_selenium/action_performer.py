@@ -22,7 +22,7 @@ class ActionPerformer:
         driver = self.__targeted_driver
         add_cookies(driver, cookies)
 
-    def switch_to_another_window(self, timeout: float = 100) -> None:
+    def switch_to_another_window(self, timeout: float) -> None:
         """
         Switches to a different window from current window in browser
         :param timeout: Number of seconds before timing out

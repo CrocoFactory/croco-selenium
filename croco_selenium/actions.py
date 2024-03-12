@@ -46,7 +46,7 @@ def add_cookies(driver: WebDriver, cookies: Cookies) -> None:
             driver.add_cookie(cookies)
 
 
-def switch_to_another_window(driver: WebDriver, timeout: float = 100) -> None:
+def switch_to_another_window(driver: WebDriver, timeout: float) -> None:
     """
     Switches to a different window from current window in browser
     :param driver: A driver to be interacted
