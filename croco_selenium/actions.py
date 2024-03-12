@@ -238,6 +238,7 @@ def get_element(
         driver: WebDriver,
         timeout: float,
         xpath: XPATH,
+        visible: bool = True,
         *,
         ignored_exceptions: Optional[IgnoredExceptions] = None
 ) -> WebElement:
@@ -246,13 +247,17 @@ def get_element(
     :param driver: A driver to be interacted
     :param timeout: Number of seconds before timing out
     :param xpath: XPATH of an element
+    :param visible: Whether element should be visible
     :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
 
     :return: WebElement
     """
-    return WebDriverWait(driver, timeout, ignored_exceptions=ignored_exceptions).until(
-        EC.visibility_of_element_located(
-            (By.XPATH, xpath)))
+    if visible:
+        condition = EC.visibility_of_element_located((By.XPATH, xpath))
+    else:
+        condition = EC.presence_of_element_located((By.XPATH, xpath))
+
+    return WebDriverWait(driver, timeout, ignored_exceptions=ignored_exceptions).until(condition)
 
 
 @ignore_exceptions
@@ -260,6 +265,7 @@ def get_elements(
         driver: WebDriver,
         timeout: float,
         xpath: XPATH,
+        visible: bool = True,
         *,
         ignored_exceptions: Optional[IgnoredExceptions] = None
 ) -> list[WebElement]:
@@ -268,13 +274,17 @@ def get_elements(
     :param driver: A driver to be interacted
     :param timeout: Number of seconds before timing out
     :param xpath: XPATH of an element
+    :param visible: Whether element should be visible
     :param ignored_exceptions: Tuple of ignored exceptions or one ignoring exception
 
     :return: list[WebElement]
     """
-    return WebDriverWait(driver, timeout, ignored_exceptions=ignored_exceptions).until(
-        EC.visibility_of_all_elements_located(
-            (By.XPATH, xpath)))
+    if visible:
+        condition = EC.visibility_of_all_elements_located((By.XPATH, xpath))
+    else:
+        condition = EC.presence_of_all_elements_located((By.XPATH, xpath))
+
+    return WebDriverWait(driver, timeout, ignored_exceptions=ignored_exceptions).until(condition)
 
 
 @ignore_exceptions
