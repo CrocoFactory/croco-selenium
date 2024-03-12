@@ -178,35 +178,39 @@ class ActionPerformer:
             self,
             timeout: float,
             xpath: XPATH,
+            visible: bool = True,
             ignored_exceptions: Optional[IgnoredExceptions] = None
     ) -> WebElement:
         """
         Gets element in browser
         :param timeout: Number of seconds before timing out
         :param xpath: XPATH of an element
+        :param visible: Whether element should be visible
         :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
 
         :return: WebElement
         """
         driver = self.__targeted_driver
-        return get_element(driver, timeout, xpath, ignored_exceptions=ignored_exceptions)
+        return get_element(driver, timeout, xpath, visible, ignored_exceptions=ignored_exceptions)
 
     def get_elements(
             self,
             timeout: float,
             xpath: XPATH,
+            visible: bool = True,
             ignored_exceptions: Optional[IgnoredExceptions] = None
     ) -> list[WebElement]:
         """
         Gets elements in browser
         :param timeout: Number of seconds before timing out
         :param xpath: XPATH of an element
+        :param visible: Whether element should be visible
         :param ignored_exceptions: Tuple of ignored exceptions or one ignored exception
 
         :return: list[WebElement]
         """
         driver = self.__targeted_driver
-        return get_elements(driver, timeout, xpath, ignored_exceptions=ignored_exceptions)
+        return get_elements(driver, timeout, xpath, visible,ignored_exceptions=ignored_exceptions)
 
     def wait_for_invisibility(
             self,
