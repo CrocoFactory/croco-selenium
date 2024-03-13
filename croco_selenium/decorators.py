@@ -29,7 +29,12 @@ def _get_driver(method_type: MethodType, *args) -> WebDriver:
     return driver
 
 
-def handle_pop_up(func: Callable = None, *, method_type: MethodType = 'instance', timeout: float = 15) -> Callable:
+def handle_pop_up(
+        func: Callable = None,
+        *,
+        method_type: MethodType = 'instance',
+        timeout: float = 15
+) -> Callable:
     """
     Switches to another window, performs decorated function and switches back. Pop up has to be closed after performing
     decorated function.
@@ -48,7 +53,12 @@ def handle_pop_up(func: Callable = None, *, method_type: MethodType = 'instance'
         driver = _get_driver(method_type, *args)
 
         original_window_handle = driver.current_window_handle
-        current_handles = driver.window_handles
+
+        if handles := kwargs.get('handles'):
+            current_handles = handles
+        else:
+            current_handles = driver.window_handles
+
         WebDriverWait(driver, timeout).until(EC.new_window_is_opened(current_handles))
         current_handles = driver.window_handles
 

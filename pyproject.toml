@@ -1,6 +1,6 @@
 [tool.poetry]
 name = 'croco_selenium'
-version = '0.1.4'
+version = '0.1.5'
 description = 'The package providing ways to interact with Selenium Web Driver actions, such as clicking, sending keys etc.'
 authors = ['Alexey <abelenkov2006@gmail.com>']
 license = 'MIT'
