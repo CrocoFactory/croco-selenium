@@ -55,7 +55,8 @@ def switch_to_another_window(driver: WebDriver, timeout: float) -> None:
     :return: str
     """
     original_window_handle = driver.current_window_handle
-    WebDriverWait(driver, timeout).until(EC.number_of_windows_to_be(2))
+    if len(driver.window_handles) < 2:
+        WebDriverWait(driver, timeout).until(EC.number_of_windows_to_be(2))
 
     for window_handle in driver.window_handles:
         if window_handle != original_window_handle:
