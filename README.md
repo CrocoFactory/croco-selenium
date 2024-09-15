@@ -1,17 +1,24 @@
 # croco-selenium
-[![Croco Logo](https://i.ibb.co/G5Pjt6M/logo.png)](https://t.me/crocofactory)
+
+<a href="https://github.com/CrocoFactory"><img alt="Croco Logo" src="https://raw.githubusercontent.com/CrocoFactory/.github/main/branding/logo/bookmark_rounded.png" width="100"></a>
+
+[![PyPi Version](https://img.shields.io/pypi/v/croco-selenium)](https://pypi.org/project/croco-selenium/)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/croco-selenium?label=downloads)](https://pypi.org/project/croco-selenium/)
+[![License](https://img.shields.io/github/license/CrocoFactory/croco-selenium.svg)](https://pypi.org/project/croco-selenium/)
+[![Last Commit](https://img.shields.io/github/last-commit/CrocoFactory/croco-selenium.svg)](https://pypi.org/project/croco-selenium/)
+[![Development Status](https://img.shields.io/pypi/status/croco-selenium)](https://pypi.org/project/croco-selenium/)           
 
 The package providing ways to interact with Selenium Web Driver actions, such as clicking, sending keys etc.
     
-
-- **[Telegram channel](https://t.me/crocofactory)**
-- **[Bug reports](https://github.com/blnkoff/croco-selenium/issues)**
+- **[Bug reports](https://github.com/CrocoFactory/croco-selenium/issues)**
 - **[Actions Overview](#actions-overview)**
 
 When we use Selenium, it's not convenient to use WebDriverWait with its cluttered chain actions. Instead of many imports 
 and instances (By, WebDriverWait, expected_conditions) you can use fast and robust actions.
 
 Package's source code is made available under the [MIT License](LICENSE)
+
+The project is made by the **[Croco Factory](https://github.com/CrocoFactory)** team
 
 # Quick Start
      
@@ -332,5 +339,5 @@ pip install croco-selenium
 To install the package from GitHub you can use:
 
 ```sh
-pip install git+https://github.com/blnkoff/croco-selenium.git
+pip install git+https://github.com/CrocoFactory/croco-selenium.git
 ```

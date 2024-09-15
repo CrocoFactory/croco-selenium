@@ -1,12 +1,12 @@
 [tool.poetry]
 name = 'croco_selenium'
-version = '0.1.6'
+version = '0.1.6.post1'
 description = 'The package providing ways to interact with Selenium Web Driver actions, such as clicking, sending keys etc.'
-authors = ['Alexey <abelenkov2006@gmail.com>']
+authors = ['Alexey <axbelenkov@gmail.com>']
 license = 'MIT'
 readme = 'README.md'
-repository = 'https://github.com/blnkoff/croco-selenium'
-homepage = 'https://github.com/blnkoff/croco-selenium'
+repository = 'https://github.com/CrocoFactory/croco-selenium'
+homepage = 'https://github.com/CrocoFactory/croco-selenium'
 classifiers = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
